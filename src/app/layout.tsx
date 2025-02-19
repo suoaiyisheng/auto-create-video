@@ -27,6 +27,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <nav className="border-b border-[#2E2E32] p-4">
+          <div className="container mx-auto flex gap-4">
+            <a href="/" className="text-white hover:text-gray-300">首页</a>
+            <a href="/table" className="text-white hover:text-gray-300">表格</a>
+          </div>
+        </nav>
         {children}
       </body>
     </html>
