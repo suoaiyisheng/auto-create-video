@@ -22,7 +22,7 @@ export default function Home() {
           <div className="bg-[#27272A] rounded-lg p-4">
             <p className="text-white">
               A modern e-commerce product page with image gallery, size/color variants, reviews
-              section and related products. Focus on the UI/UX first, I'll
+              section and related products. Focus on the UI/UX first, I&apos;ll
               integrate Supabase for product data later.
             </p>
           </div>
@@ -81,7 +81,7 @@ export default function Home() {
             <p className="text-lg">Spinning up preview...</p>
             <div className="flex flex-col items-center gap-2 mt-4">
               <p className="flex items-center gap-2">
-                <span>🌐</span> Deploy when you're ready
+                <span>🌐</span> Deploy when you&apos;re ready
               </p>
               <p className="flex items-center gap-2">
                 <span>💬</span> Chat with AI in the sidebar
