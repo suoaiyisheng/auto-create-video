@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "./button"
+import Image from "next/image"
 
 interface UploadProps {
   accept?: string
@@ -41,7 +41,13 @@ export function Upload({ accept = "image/*,video/*", onChange }: UploadProps) {
           {preview.startsWith("data:video") ? (
             <video src={preview} controls className="max-w-[200px]" />
           ) : (
-            <img src={preview} alt="Preview" className="max-w-[200px]" />
+            <Image 
+              src={preview} 
+              alt="Preview" 
+              width={200}
+              height={200}
+              className="max-w-[200px] object-contain"
+            />
           )}
         </div>
       )}

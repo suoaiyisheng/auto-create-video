@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -18,12 +18,24 @@ export default function TablePage() {
     { id: 2, script: "示例脚本2", media: "example2.jpg" },
   ])
   const [editingId, setEditingId] = useState<number | null>(null)
+  const scriptRef = useRef<HTMLTextAreaElement>(null)
 
   const handleEdit = (id: number) => {
     setEditingId(id)
   }
 
   const handleSave = (id: number) => {
+    const item = items.find(item => item.id === id)
+    if (!item) return
+
+    const newScript = scriptRef.current?.value || item.script
+    
+    setItems(items.map(i => 
+      i.id === id 
+        ? { ...i, script: newScript }
+        : i
+    ))
+    
     setEditingId(null)
   }
 
@@ -46,6 +58,7 @@ export default function TablePage() {
                 <TableCell>
                   {editingId === item.id ? (
                     <Textarea
+                      ref={scriptRef}
                       defaultValue={item.script}
                       className="min-h-[100px]"
                     />
@@ -57,7 +70,11 @@ export default function TablePage() {
                   {editingId === item.id ? (
                     <Upload
                       onChange={(file) => {
-                        console.log("Selected file:", file)
+                        setItems(items.map(i => 
+                          i.id === item.id 
+                            ? { ...i, media: URL.createObjectURL(file) }
+                            : i
+                        ))
                       }}
                     />
                   ) : (
